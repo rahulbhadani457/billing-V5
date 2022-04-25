@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+<h1>Delete {{printDeleteView.Item_Name}} {{printDeleteView.Item_Catogory}} {{printDeleteView.Quatity_Sold}}{{printDeleteView.Unit}} ?</h1>
+
+<form method="post" onsubmit="myButton.disabled = true; return true;">
+  {% csrf_token %}
+  <input type="submit" class="btn btn-danger" value="Delete">
+  <a href="{% url 'print:viewprint' %} ">Cancel</a>
+
+
+</form>
+
+{% endblock %}

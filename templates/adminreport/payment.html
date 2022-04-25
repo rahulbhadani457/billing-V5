@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block body_block %}
+<h1>Payment</h1>
+<h6>Total bill amount is <font color='red'><b>{{grandTotal}}</b></font></h6>
+<form method ='POST' onsubmit="myButton.disabled = true; return true;">
+{% csrf_token %}
+
+{% include 'form_template.html' %}
+<div class="col-sm-offset-2 col-sm-10">
+    <input type="submit" name = "myButton" class='btn btn-success' value="Submit" onclick="window.open('http://maabhagwatihandloom.com/')"/>
+
+{% endblock %}

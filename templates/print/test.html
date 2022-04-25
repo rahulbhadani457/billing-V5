@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+        <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'bill/css/bootstrap.min.css' %}">
+  <script src={% static 'bill/js/bootstrap.min.js' %}></script>
+
+  </script>
+   <script>
+     function printpage() {
+        //Get the print button and put it into a variable
+        window.open('http://maabhagwatihandloom.com/')
+        var printButton = document.getElementById("printpagebutton");
+        //Set the print button visibility to 'hidden' 
+        printButton.style.visibility = 'hidden';
+        //Print the page content
+        window.print()
+        printButton.style.visibility = 'visible';
+
+    }
+    </script>
+  <style>
+table tr.page-break{
+  page-break-after:always
+} 
+
+
+.table td, .table th, .table thead ,.table tbody {
+    border: none;
+}
+.table td, .table th{
+padding: 5px;
+}
+
+table.table.table-condensed {
+    border: 0px solid black;
+}
+
+
+.line-center{
+    margin:0;padding:0 10px;
+    background:#fff;
+    display:inline-block;
+}
+h2{
+    
+    text-align:center;
+    position:relative;
+    z-index:2;
+    
+}
+h2:after{
+    content:"";
+    position:absolute;
+    top:50%;
+    left:0;
+    right:0;
+    border-top:solid 2px red;
+    z-index:-1;
+}
+td{
+
+  font-size:10px;
+
+}
+td:first-line{
+  font-size:18px;
+
+}
+
+  </style>
+
+<hr  color="red">
+<div class="table-responsive-border" >          
+  <table class="table table-condensed" >
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Item</th>
+        <th>Qty</th>
+        <th>Unit</th>
+        <th>Rate(&#x20b9;)(Nett.)/Unit</th>
+        <th>Total(&#x20b9;)</th>
+      </tr>
+    </thead>
+    {% for obj in viewprint %}
+    <tbody>
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{obj.Item_Name }}({{obj.Item_Catogory}})</td>
+        <td>{{obj.Quatity_Sold}}</td>
+        <td>{{obj.Unit}}</td>
+        <td>{{obj.Rate_Of_Sale}}</td>
+        <td>{{obj.Total}}</td>
+        </tr>
+    </tbody>
+      </tr>
+      {% endfor %}
+
+      
+
+      
+      
+  </table>
+
+  <h3> Total :&#x20b9;{{grandTotal}}</h3>
+    <center>  <input id="printpagebutton" type="button" class="btn btn-success my-2 my-sm-0 button1" value="Print Bill" onclick="printpage()"/></center>
+  </body>
+  </html>

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block body_block %}
+<h3><center>Update Payment {{bill_type}}-{{InvNumber}} total due is <b>
+<font color = 'red'>{{payment_left_last_tansaction}}</font></b></center></h3>
+<br/>
+<form method ='POST' onsubmit="myButton.disabled = true; return true;">
+{% csrf_token %}
+
+{{ form.as_p }}
+<input type ='submit' value='save'/>
+
+
+{% endblock %}

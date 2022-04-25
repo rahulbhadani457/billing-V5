@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+
+{% load static %}
+<script src={% static 'bill/js/pass.js' %} type="text/javascript">
+</script>
+<ol>
+    <li><button type="button" class="btn btn-outline-primary" class="btn btn-info" ><a href="{% url 'bill:admin_gst_list' %}">Admin Report GST</a></button></li>
+
+    <p></p>
+    <li><button type="button" class="btn btn-outline-primary" class="btn btn-info" ><a href="{% url 'bill:admin_nogst_list' %}">Admin Non Report GST</a></button></li>
+<p></p>
+<li><button type="button" class="btn btn-outline-primary" class="btn btn-info" ><a href="{% url 'admin:index' %}">Non Report GST</a></button></ol></li>
+</ol>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_block %}
+<script>
+    $( function() {
+      var availableTags = [
+        
+      ];
+      $( "#id_Item_Catogory" ).autocomplete({
+        source: "{% url 'bill:autocomplete_Catogory'%}"
+      });
+    } );
+  </script>
+<h1>
+  
+  Update Customer Name
+  
+    
+</h1>
+<br/>
+
+
+  <form method="POST" onsubmit="myButton.disabled = true; return true;">
+    {% csrf_token %}
+    <div class="form-group">
+    {% include 'form_template.html' %}
+    <div class="col-sm-offset-2 col-sm-10">
+    <input type="submit" name = "myButton" class='btn btn-success' value="Submit">
+    
+
+  </form>
+      {% endblock %}

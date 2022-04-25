@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block body_block %}
+<p class="container">
+  <div class="jumbotron">
+    <h1><center>Detail</center></h1>
+    
+    <p><label class="control-label col-sm-2" >ItemCode</label>:<b> {{gst_details.Item_Code}}</b> </p>
+    <p><label class="control-label col-sm-2" >ItemName</label></label>: {{gst_details.Item_Name}}</p>
+    <p><label class="control-label col-sm-2" >Item_Catogory</label>: {{gst_details.Item_Catogory}}</p>
+    <p><label class="control-label col-sm-2" >HSN_Code</label>: {{gst_details.HSN_Code}}</p>
+    <p><label class="control-label col-sm-2" >Quatity_Bought</label>: {{gst_details.Quatity_Bought}}</p>
+    <p><label class="control-label col-sm-2" >RateOfPurchase</label>: {{gst_details.Rate_Of_Purchase}}</p>
+    <p><label class="control-label col-sm-2" >Unit</label>: {{gst_details.Unit}}</p>
+    <p><label class="control-label col-sm-2" >Rate_Of_Sale</label>: {{gst_details.Rate_Of_Sale}}</p>
+    <p><label class="control-label col-sm-2" >IGST_Percent</label>: {{gst_details.IGST_Percent}}</p>
+    <p><label class="control-label col-sm-2" >SGST_Percent</label>: {{gst_details.SGST_Percent}}</p>
+    <p><label class="control-label col-sm-2" >CGST_Percent</label>: {{gst_details.CGST_Percent}}</p>
+    <p><label class="control-label col-sm-2" >GST_Type</label>: {{gst_details.GST_Type}}</p>
+    <div class="btn-group" >
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="{% url 'bill:create' %}"><button type="button" class="btn btn-warning button2">Create New</button></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="{% url 'bill:update' gst_details.Item_Code %}"><button type="button" class="btn btn-danger button2">Update</button></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="{% url 'bill:viewSales'%}"><button type="button" class="btn btn-success button2" >Show all details</button></a>
+    
+  </div>
+  </div>
+  
+
+        
+
+  </div>
+
+
+{% endblock %}

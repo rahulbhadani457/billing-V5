@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'bill/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'bill/css/jquery-ui.css' %}">
+  <script src="{% static 'bill/js/jquery-1.12.4.js' %}"></script>
+  <script src="{% static 'bill/js/jquery-ui.js' %}"></script>
+  {% block anyscript %}
+
+      {% endblock %}
+  <script>
+     function printpage() {
+        //Get the print button and put it into a variable
+        var printButton = document.getElementById("printpagebutton");
+        //Set the print button visibility to 'hidden' 
+        printButton.style.visibility = 'hidden';
+        //Print the page content
+        window.print()
+        printButton.style.visibility = 'visible';
+    }
+function validateForm() {
+  var x = document.forms["searchForm"]["q"].value;
+  if (x == "") {
+    alert("Search Must be filled out");
+    return false;
+  }
+}
+</script>
+  <script src={% static 'bill/js/bootstrap.min.js' %}></script>
+
+  </script>
+  <script>
+    $( function() {
+      var availableTags = [
+        
+      ];
+      $( "#q" ).autocomplete({
+        minLength: 1,
+        source: "{% url 'bill:autocomplete'%}"
+      });
+    } );
+    </script>
+  <style>
+    table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+input:read-only {
+  background-color: #dddddd;
+}
+@media print {
+  #printPageButton {
+    display: none;
+  }
+}
+button {
+  width: 300px;
+  font-size: 24px;
+}
+
+.button1{
+  width: 100px;
+}
+.button2{
+  width: 125px;
+}
+.button3{
+  width: 150px;
+}
+  </style>
+
+<title>
+{% block title %}
+
+      {% endblock %}
+</title>
+
+ 
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="{% url 'bill:index' %}" >Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'bill:stock' %}">Stock</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'print:printview' %}">Billing</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'GST2A:GST2Aindex' %}">Supplier</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'itemreturn:returnindex' %}">Return</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'bill:report' %}">Report</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'bill:admin' %}">Admin</a>
+      </li>
+
+    </ul>
+    <form name ="searchForm" class="form-inline my-2 my-lg-0" action="/bill/search/" onsubmit="return validateForm()" method="get">
+      <input class="form-control mr-sm-2 w-80 ui-autocomplete-input" type="text" placeholder="Search" name="q" id ="q">
+      <button class="btn btn-secondary my-2 my-sm-0 button1" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<div class="container">
+<p>
+
+</p>
+
+{% block body_block %}
+
+      {% endblock %}
+
+</div>
+  </body>
+</html>

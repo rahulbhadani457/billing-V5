@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block body_block %}
+<center><h1>State Of Supply</h1></center>
+<br>
+<br>
+<form class="form-inline my-2 my-lg-0" action="/bill/stateOfSupply" method="get" onsubmit="myButton.disabled = true; return true;">
+
+    <h4>Select State of Supply&nbsp;</h4>
+    <select class="form-control mr-sm-2" name="placeOfSupply">
+    <option value="Bihar(10)">Bihar(10)</option>
+    <option value="Jharkhand(20)">Jharkhand(20)</option>
+    <option value="West Bengal(19)">West Bengal(19)</option>
+    <option value="Uttar Pradesh(09)">Uttar Pradesh(09)</option>
+    
+    </select>
+      <button class="btn btn-secondary my-2 my-sm-0 button1" type="submit">Submit</button>
+    </form>
+    <br>
+
+{% endblock %}

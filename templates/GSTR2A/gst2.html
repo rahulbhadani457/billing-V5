@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block body_block %}
+<script>
+  $( function() {
+    var availableTags = [
+      
+    ];
+    $( "#id_Supplier" ).autocomplete({
+      source: "{% url 'GST2A:autocomplete_Supplier'%}"
+    });
+  } );
+</script>
+<center><h1>Purchase report</h1></center>
+
+<form action="/GST2A/GSTR2AFilling" method="get" onsubmit="myButton.disabled = true; return true;">
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="id_Supplier"><b>Supplier</b></label></label>
+  <div class="col-sm-10">
+    <input  class="form-control" type="text" name="id_Supplier" required id="id_Supplier">
+   </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="id_due_or_all"><b>Due or All report</b></label></label>
+  <div class="col-sm-10">
+    <select class="form-control" id="id_due_or_all" name="id_due_or_all">
+<option value="All">All</option>
+<option value="Due">Due</option>
+</select>
+    </div>
+  </div>
+
+  <div class="form-group row" >
+    <label class="col-sm-2 col-form-label" for="id_start_date"><b>Start Date(Billing date):</b></label></label>
+  <div class="col-sm-10">
+    <input class=class="form-control" type="date" name="id_start_date"  required id="id_start_date">
+
+  </div>
+</div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label"  for="id_end_date"><b>End Date(Billing date):</b></label></label>
+  <div class="col-sm-10">
+    <input  type="date" name="id_end_date"  required id="id_end_date">
+    </div>
+  </div>
+  <div class="form-group row">
+  <input type="submit" class='btn btn-success' value="Submit">&nbsp;&nbsp;&nbsp;&nbsp;
+  <input type="reset" class='btn btn-secondary' value="reset">
+  </div>
+  </form>
+
+
+{% endblock %}

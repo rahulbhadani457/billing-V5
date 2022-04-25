@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block body_block %}
+<a href="{% url 'bill:Estimate'%}"><button type="button" class="btn btn-success btn-lg btn-block">Estimate Bill</button></a>
+<br>
+<br>
+<br>
+<br>
+<a href="{% url 'bill:Invoice'%}"><button type="button" class="btn btn-success btn-lg btn-block">Invoice Bill</button></a>
+{% endblock %}

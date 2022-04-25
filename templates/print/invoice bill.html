@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>IN-{{ InvNumber }}</title>
+        <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'bill/css/bootstrap.min.css' %}">
+  <script src={% static 'bill/js/bootstrap.min.js' %}></script>
+
+  </script>
+  <script>
+     function printpage() {
+        //Get the print button and put it into a variable
+        var printButton = document.getElementById("printpagebutton");
+        //Set the print button visibility to 'hidden' 
+        printButton.style.visibility = 'hidden';
+        //Print the page content
+        window.print()
+        printButton.style.visibility = 'visible';
+    }
+    </script>
+  <style>
+table tr.page-break{
+  page-break-after:always
+} 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+.table td, .table th, .table thead ,.table tbody {
+  border: 1px solid black;
+}
+.table td, .table th{
+padding: 3px;
+}
+
+table.table.table-condensed {
+    border: 1px solid black;
+}
+
+
+.line-center{
+    margin:0;padding:0 10px;
+    background:#fff;
+    display:inline-block;
+}
+h2{
+    
+    text-align:center;
+    position:relative;
+    z-index:2;
+    
+}
+h2:after{
+    content:"";
+    position:absolute;
+    top:50%;
+    left:0;
+    right:0;
+    border-top:solid 2px red;
+    z-index:-1;
+}
+td{
+
+  font-size:10px;
+
+}
+td:first-line{
+  font-size:18px;
+
+}
+.columntax {
+  float: left;
+  width: 8%;
+  border: 1px;
+ /* Should be removed. Only for demonstration */
+}
+* {
+  box-sizing: border-box;
+}
+/* Clear floats after the columns */
+.rowtax:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+  </style>
+
+</head>
+<body> 
+
+<div class="container">
+        
+  
+    
+
+        
+        <center><i><h1 style ="font-family:Tahoma;color:#990033"><b>Maa Bhagwati Handloom 
+        </h1></i>
+		<h6 style ="font-family:MV Boli;color:#8003fc; font-size:14px;"> (LUNGI GAMCHI TOWEL DUPATTA MARKIN RUBIYA DHOTI EKRANGA STOLE MALMAL POPLIN PITAMBARI WHOLESELLER SELLER) </b></h6></center>
+<div class="table-responsive-border" >  
+    <table class="table table-condensed" >
+    
+      <tr>
+        <td>Mob:9430059090 GSTIN:<b>10BHBPD2630J1Z4<b></td>
+        <td class ="text-right">
+        {% if duplicate_bill %}
+          {% ifequal cancel 'Yes' %}
+            Cancel Bill
+          {% else %}
+            Duplicate Bill
+          {% endifequal %}
+          
+        {% else %}
+          Orginal Bill
+        {% endif %}</td>
+        
+        
+      </tr>
+      <tr>
+        <td>54/70, Geeta Bhawan Market</td>
+        <td class ="text-right">Invoice Date: <b>{{inv_date}}</b></td>
+       
+        
+      </tr>
+      <tr>
+        <td>Tekari Rd, Gaya, Bihar-823001</td>
+        <td class ="text-right">Invoice No: <b>IN-{{ InvNumber }}</b></td>
+       
+        
+      </tr>
+    
+    
+  </table>
+
+  <h2><span  class="line-center">Tax Invoice</span></h2>
+
+  <div class="table-responsive-border" >          
+  <table class="table table-condensed" >
+    {% for obj in CustDetails %}
+      <tr>
+        <th><h4>Customer Details</h4></th>
+        <th><h4>Transportation</h4></th>
+		
+        
+        
+      </tr>
+    <tr>
+        <td>Name:<b>{{obj.Customer_Name}}</b></td>
+        <td>Transport:-</td>
+        
+        
+      </tr>
+      <tr>
+      
+        <td>Address: {{obj.Address}}</td>
+        <td>WayBill No: -</td>
+        
+      </tr>
+      <tr>
+
+        <td>Mob No: <b>{{obj.Mob_No}}</b> GSTIN: <b>{{obj.GSTN_of_Customer}}</b></td>
+        <td>Place of supply: <b>{{placeOfSupply}}</b></td>
+        
+      </tr>
+    <tr>
+        <td>City: {{obj.City}} ,State: {{obj.State}}</td>
+        <td></td>
+    </tr>
+{% endfor %}
+  </table>
+<hr  color="red">
+<div class="table-responsive-border" >          
+  <table class="table table-condensed" >
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Item</th>
+        <th>HSN Code</th>
+        <th>Qty</th>
+        <th>Unit</th>
+        <th>Rate(&#x20b9;)(Nett.)/Unit <i style="font-size: 12px">(GST %)</i></th>
+        <th>Total(&#x20b9;)</th>
+      </tr>
+    </thead>
+    {% for obj in ItemsDetails %}
+    <tbody>
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td style="min-width: 250px;">{{obj.Item_Name }} ({{obj.Item_Catogory }})</td>
+        <td>{{obj.Hsn_Code }}</td>
+        <td>{{obj.Quatity_Bought_Sale }}</td>
+		    <td>{{obj.Unit_Sale}}</td>
+        <td>{{obj.Unit_Nett_Price_Sale}} <i style="font-size: 12px">({{sum_per}}%)</i></td>
+        
+        <td>{{obj.Total_Sale}}</td>
+        </tr>
+    </tbody>
+      </tr>
+      {% endfor %}
+
+      
+
+      
+      
+  </table>
+
+<hr  color="red">
+<div class="table-responsive-border" >          
+  <table class="table table-condensed" >
+        <td class ="text-right"><b>Total(Incuding Tax)</b></td>
+        <td class ="text-right">{{ Total }}{{print_round_off_diff}} (Round off) = <b>&#x20b9; {{round_amount}}</b></td> 
+      </tr>
+          <tr>
+        <td class ="text-right"><b>Total in words after round off</b></td>
+        <td class ="text-right"> <b>{{ Total_in_word }}</b></td> 
+      </tr>
+
+  </table>
+  
+<div class="rowtax">
+
+  <div class="columntax">
+  
+    <h6>Taxable</h6>
+    <p>&#x20b9;{{ Taxable_Amount }}</p>
+  </div>
+  <div class="columntax">
+    <h6>SGST</h6>
+    <p>&#x20b9;{{ SGSTTotal }}</p>
+  </div>
+  <div class="columntax">
+    <h6>CGST</h6>
+    <p>&#x20b9;{{ CGSTTotal }}</p>
+	
+  </div>
+  
+</div>
+
+<div>
+  
+ <font size="1">
+        <ol>
+
+    <li>Goods once sold will not be Returned/Replace</li>
+	
+    <li>All disputes subjects to Gaya Jurisdicition</li>
+    <li>E. & O.E.</li>
+    <li>1 CHK =4 PCS, 1 JODA= 2PCS</li>
+  </ol> 
+  </font>
+  
+  </div>
+
+
+  <center>**Computer generated Invoice and requires no signature**</center>
+  </div>
+<center>  <input id="printpagebutton" type="button" class="btn btn-success my-2 my-sm-0 button1" value="Print Bill" onclick="printpage()"/></center>
+</body>
+</html>

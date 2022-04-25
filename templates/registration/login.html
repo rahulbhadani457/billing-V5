@@ -1,0 +1,7 @@
+Login
+<form  method="post" onsubmit="myButton.disabled = true; return true;">
+     {% csrf_token %}  {{form.as_p}}  
+     <button name = "myButton" class="btn btn-secondary my-2 my-sm-0 button1" type="submit">Login</button>
+    </form>
+
+

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block body_block %}
+<p class="container">
+  <div class="jumbotron">
+    <h1><center>Detail</center></h1>
+    <p><label class="control-label col-sm-2" >Customer Name</label>:<b> {{cust_details.Customer_Name}}</b> </p>
+    <p><label class="control-label col-sm-2" >Address</label></label>: {{cust_details.Address}}</p>
+    <p><label class="control-label col-sm-2" >City</label>: {{cust_details.City}}</p>
+    <p><label class="control-label col-sm-2" >State</label>: {{cust_details.State}}</p>
+    <p><label class="control-label col-sm-2" >GSTN of Customer</label>: {{cust_details.GSTN_of_Customer}}</p>
+    <div class="btn-group" >
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="{% url 'adminrep:CustEntryView' %}"><button type="button" class="btn btn-warning button2">Create New</button></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="{% url 'adminrep:updateCustEntry' cust_details.Cust_Id %}"><button type="button" class="btn btn-danger button2">Update</button></a>
+    
+    
+  </div>
+  </div>
+  
+
+        
+
+  </div>
+
+
+{% endblock %}

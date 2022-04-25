@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block body_block %}
+<h1>Bill</h1>
+
+<table border="1">
+<thead>
+    <tr>
+    <th>ItemCode</th>
+    <th>ItemName</th>
+    <th>HSNCode</th>
+    <th>Quatity</th>
+    <th>RateOfPurchase</th>
+    <th>no_of_piece_in_qty</th>
+    <th>RateOfSale</th>
+    <th>RateOfGST</th>
+    <th>typeGST</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+</thead>
+<tbody>
+    {% for obj in viewSales %}
+    <tr>
+        <td>{{ obj.ItemCode }}</td>
+        <td>{{ obj.ItemName }}</td>
+        <td>{{ obj.HSNCode }}</td>
+        <td>{{ obj.Quatity }}</td>
+        <td>{{ obj.RateOfPurchase }}</td>
+        <td>{{ obj.unit }}</td>
+        <td>{{ obj.RateOfSale }}</td>
+        <td>{{ obj.CGST_P }}</td>
+        <td>{{ obj.SGST_P }}</td>
+        <td>{{ obj.typeGST }}</td>
+        <td><a href="{% url 'bill:update' obj.ItemCode %}">edit</a></td>
+        <td><a class="btn btn-danger" href="{% url 'bill:delete' obj.ItemCode %}">delete</a></td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+{% endblock %}

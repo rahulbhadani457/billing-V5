@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_block %}
+<script>
+    $( function() {
+      var availableTags = [
+        
+      ];
+      $( "#id_Supplier_name" ).autocomplete({
+        source: "{% url 'GST2A:autocomplete'%}"
+      });
+    } );
+  </script>
+<script>
+    $( function() {
+      var availableTags = [
+        
+      ];
+      $( "#id_GSTIN_of_Supplier" ).autocomplete({
+        source: "{% url 'GST2A:autocomplete_gst_no'%}"
+      });
+    } );
+  </script>
+<h1><center>Supplier Bill adding</center></h1>
+<form method ='POST' onsubmit="myButton.disabled = true; return true;">
+{% csrf_token %}
+{% include 'form_template.html' %}
+<div class="col-sm-offset-2 col-sm-10">
+    <input type="submit"  name = "myButton" class='btn btn-success' value="Submit">
+
+
+
+{% endblock %}

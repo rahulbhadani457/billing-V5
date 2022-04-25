@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_block %}
+<script>
+    $( function() {
+      var availableTags = [
+        
+      ];
+      $( "#id_Item_Catogory" ).autocomplete({
+        source: "{% url 'bill:autocomplete_Catogory'%}"
+      });
+    } );
+  </script>
+<h1>
+  {% if not form.instance.pk %}
+  Create New Stock 
+  {% else %}
+  Update Stock
+  {% endif %}
+    
+</h1>
+<p = 'red'>
+<span style="color:red;">Enter IGST, CGST and SGST percent of Purchase</span>
+</p   >
+
+
+  <form method="POST" onsubmit="myButton.disabled = true; return true;">
+    {% csrf_token %}
+    <div class="form-group">
+    {% include 'form_template.html' %}
+    <div class="col-sm-offset-2 col-sm-10">
+    <input type="submit" name = "myButton" class='btn btn-success' value="Submit">
+    
+
+  </form>
+      {% endblock %}

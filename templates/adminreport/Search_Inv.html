@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block body_block %}
+<h2>Bill Details for {{inv}} - {{q}}</h2>
+<hr>
+    {% for obj in CustDetails %}
+    <h4>Customer details</h4>
+    <table class="table table-striped table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Name of Customer</th>
+      <th scope="col">Address</th>
+      <th scope="col">Mob No</th>
+      <th scope="col">GSTIN</th>
+      <th scope="col">City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{obj.Customer_Name}}</th>
+      <td>{{obj.Address_Line_1}}</td>
+      <td>{{obj.Mob_No}}</td>
+      <td>{{obj.GSTN_of_Customer}}</td>
+      <td>{{obj.City}}</td>
+
+    </tr>
+      </tbody>
+</table>
+
+{% endfor %}
+<hr>
+<table class="table-active">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Item Name</th>
+      <th scope="col">Hsn_Code</th>
+      <th scope="col">Quatity Bought</th>
+      <th scope="col">Sale Price</th>
+      <th scope="col">Total(Nett.)</th>
+    </tr>
+  </thead>
+<h4>Item in Invoice</h4>
+    {% for obj in search_result %}
+    
+    
+  <tbody>
+    <tr>
+    <th class="table-info">{{forloop.counter}}</th>
+      <td class="table-info">{{obj.Item_Name}}({{obj.Item_Catogory}})</td>
+      <td class="table-info">{{obj.Hsn_Code}}</td>
+      <td class="table-info">{{obj.Quatity_Bought_Sale}} {{obj.Unit_Sale}}</td>
+      <td class="table-info">{{obj.Unit_Nett_Price_Sale}}</td>
+      <td class="table-info">{{obj.Total_Sale}}</td>
+
+    </tr>
+      
+
+{% endfor %}
+</tbody>
+</table>
+<hr>
+<table class="table-active">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Payment Date</th>
+      <th scope="col">Payment Amount</th>
+      <th scope="col">Due Left</th>
+      <th scope="col">Comment</th>
+      
+    </tr>
+  </thead>
+<h4>Payment History</h4>
+    {% for pay in payment_history %}
+  <tbody>
+    <tr>
+    <th class="table-info">{{forloop.counter}}</th>
+    <td class="table-info">{{pay.current_payment_Date}}</td>
+      <td class="table-info">{{pay.payment_Amount}}</td>
+      <td class="table-info">{{pay.payment_left}}</td>
+      <td class="table-info">{{pay.Comment}}</td>
+    </tr>
+      
+
+{% endfor %}
+</tbody>
+</table>
+<br>
+{% for obj in search_result|slice:":1" %}
+
+Is Bill cancelled : {{ obj.Bill_Cancel}}<br>
+{% ifequal  obj.Bill_Cancel 'Yes' %} 
+Total Bill amount : <del>{{ grandTotal }}</del><br>
+    Total need to pay : <b><del>{{ left_amount}}</del></b><br>
+    Bill Cancel reason :<b>{{obj.comment}}</b><br> 
+    <br/>
+<br/>
+
+<center><a href="{% url 'print:InvoicePrint' %}"><button type="button" class="btn btn-danger button3">Print bill</button></a>
+
+
+    
+{% else %} 
+    Total Bill amount : {{ grandTotal }}<br>
+    Total need to pay : <b>{{ left_amount}}</b><br> 
+    <br/>
+<br/>
+
+<a href="{% url 'print:InvoicePrint' %}"><button type="button" class="btn btn-danger button3">Print bill</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="{% url 'adminrep:paymentupdate' %}"><button type="button" class="btn btn-danger button3">Update Payment</button></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="{% url 'adminrep:cancelInv' %}"><button type="button" class="btn btn-danger button3">Cancel Bill</button></a></center>
+{% endifequal %} 
+
+
+{% endfor %}
+<br/>
+<br/>
+<br/>
+<br/>
+{% endblock %}

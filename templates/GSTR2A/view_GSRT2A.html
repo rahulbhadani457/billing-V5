@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block body_block %}
+<h1>Bill Of Suppliers</h1>
+
+<table border="1">
+<thead>
+    <tr>
+<th>Name_of_Supplier</th>
+<th>GSTIN_of_Supplier</th>
+<th>Invoice_number</th>
+<th>Invoice_date</th>
+<th>Product_receive_date</th>
+<th>Taxable_value</th>
+<th>SGST_Tax</th>
+<th>CGST_Tax</th>
+<th>IGST_Tax</th>
+<th>Total</th>
+  </tr>
+        {% for obj in viewGSRT2A %}
+      <tr>
+        <td>{{ obj.Supplier_name}}</td>
+<td>{{ obj.GSTIN_of_Supplier}}</td>
+<td>{{ obj.Invoice_number}}</td>
+<td>{{ obj.Invoice_date}}</td>
+<td>{{ obj.Received_date}}</td>
+<td>{{ obj.Amount_No_Tax}}</td>
+<td>{{ obj.SGST_Tax}}</td>
+<td>{{ obj.CGST_Tax}}</td>
+<td>{{ obj.IGST_Tax}}</td>
+<td>{{ obj.Total_Amount}}</td>
+        <td><a href="{% url 'GST2A:UpdateGSTR2A' obj.pk %}">edit</a></td>
+        <td><a class="btn btn-danger" href="{% url 'GST2A:GSTR2ADeleteView' obj.pk %}">delete</a></td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+{% endblock %}

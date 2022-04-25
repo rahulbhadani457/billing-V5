@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block body_block %}
+<h1>Bill Search form</h1>
+<br>
+<br>
+<div>
+{% if search_result %}
+    <table border="1">
+        <thead>
+            <tr>
+    <th>ItemCode</th>
+    <th>ItemName</th>
+    <th>Item_Catogory</th>
+    <th>HSNCode</th>
+    <th>Quatity Left In Stock</th>
+    <th>Unit</th>
+    
+    <th>Rate_Of_Sale</th>
+    <th>IGST%</th>
+    <th>CGST%</th>
+    <th>SGST%</th>
+    <th>GST_Type</th>
+    </tr>
+        </thead>
+        <tbody>
+            {% for obj in search_result %}
+                <tr>
+            <td>{{ obj.Item_Code }}</td>
+            <td>{{ obj.Item_Name }}</td>
+            <td>{{ obj.Item_Catogory }}</td>
+            <td>{{ obj.HSN_Code }}</td>
+            <td>{{ obj.Quatity_in_stock }}</td>
+            <td>{{ obj.Unit }}</td>
+            <td>{{ obj.Rate_Of_Sale }}</td>
+            
+            <td>{{ obj.IGST_Percent }}</td>
+            <td>{{ obj.CGST_Percent }}</td>
+            <td>{{ obj.SGST_Percent }}</td>
+            <td>{{ obj.GST_Type }}</td>
+                    <td><form class="form-inline my-2 my-lg-0" action="{% url 'print:get_print_Form' %}" method="post">
+                    {% csrf_token %}
+                    <input  type="text" placeholder="Search" name="q" value = {{ obj.Item_Code }} hidden>
+                    <a><button class="btn btn-secondary my-2 my-sm-0 button2" type="submit">
+                    Add to Billing</button></a></form></td>
+                    <td><a href="{% url 'bill:update' obj.Item_Code %}">edit</a></td>
+                    <td><a class="btn btn-danger" href="{% url 'bill:delete' obj.Item_Code %}">delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+     {% else %}
+        <li style="color:red">No obj</li>
+    {% endif %}
+{% endblock %}
+</div>

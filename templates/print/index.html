@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block body_block %}
+<center><h1>Billing Main Page</h1></center>
+{%if error%}
+<center><h5><font color = 'red'>Invoice {{Inv}}-{{q}} not found Please recheck</font></h5></center>
+{%endif%}
+<br>
+<form class="form-inline my-2 my-lg-0" action="/adminrep/Invsearch" method="get" onsubmit="myButton.disabled = true; return true;">
+
+    <h4>Invoice Number &nbsp;</h4>
+    <select class="form-control mr-sm-2" name="Inv">
+    <option value="IN">IN</option>
+    <option value="EST">EST</option>
+    
+    </select><b>- &nbsp;</b><input class="form-control mr-sm-2" type="number" placeholder="Search" name="q" required >
+      <button class="btn btn-secondary my-2 my-sm-0 button1" type="submit">Search</button>
+    </form>
+    <br>
+<br>
+<a href="{% url 'print:viewprint' %}"><button type="button" class="btn btn-success">All items added for billing</button></a>
+<br><br>
+<a href="{% url 'bill:Estimate'%}"><button type="button" class="btn btn-success">Estimate Bill</button></a>
+<br><br>
+<a href="{% url 'bill:Invoice'%}"><button type="button" class="btn btn-success">Invoice Bill</button></a>
+{% endblock %}

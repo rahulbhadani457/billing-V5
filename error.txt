@@ -1,0 +1,56 @@
+SELECT * FROM bill.adminreport_salereport where length(Hsn_Code)<>4
+SELECT * FROM bill.adminreport_custdetail where length(Mob_No)<>10;
+
+#SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+
+update bill.adminreport_salereport set Igst_Percent_Sale = 5,Cgst_Percent_Sale = 0,Sgst_Percent_Sale = 0,Igst_Tot_Sale = 63,Cgst_Tot_Sale = 0,Sgst_Tot_Sale = 0, place_of_supply = 'Jharkhand(20)' where id = 1772;
+update bill.adminreport_salereport set Igst_Percent_Sale = 5,Cgst_Percent_Sale = 0,Sgst_Percent_Sale = 0,Igst_Tot_Sale = 40.70,Cgst_Tot_Sale = 0,Sgst_Tot_Sale = 0, place_of_supply = 'Jharkhand(20)' where id = 1773;
+update bill.adminreport_salereport set Igst_Percent_Sale = 5,Cgst_Percent_Sale = 0,Sgst_Percent_Sale = 0,Igst_Tot_Sale = 153,Cgst_Tot_Sale = 0,Sgst_Tot_Sale = 0, place_of_supply = 'Jharkhand(20)' where id = 1779;
+update bill.adminreport_salereport set Igst_Percent_Sale = 5,Cgst_Percent_Sale = 0,Sgst_Percent_Sale = 0,Igst_Tot_Sale = 85.5,Cgst_Tot_Sale = 0,Sgst_Tot_Sale = 0, place_of_supply = 'Jharkhand(20)' where id = 1780;
+update bill.adminreport_salereport set Igst_Percent_Sale = 5,Cgst_Percent_Sale = 0,Sgst_Percent_Sale = 0,Igst_Tot_Sale = 60.8,Cgst_Tot_Sale = 0,Sgst_Tot_Sale = 0, place_of_supply = 'Jharkhand(20)' where id = 1781;
+update bill.adminreport_salereport set Igst_Percent_Sale = 5,Cgst_Percent_Sale = 0,Sgst_Percent_Sale = 0,Igst_Tot_Sale = 36.5,Cgst_Tot_Sale = 0,Sgst_Tot_Sale = 0, place_of_supply = 'Jharkhand(20)' where id = 1782;
+update bill.adminreport_salereport set Igst_Percent_Sale = 5,Cgst_Percent_Sale = 0,Sgst_Percent_Sale = 0,Igst_Tot_Sale = 194.04,Cgst_Tot_Sale = 0,Sgst_Tot_Sale = 0, place_of_supply = 'Jharkhand(20)' where id = 1783;
+
+update bill.adminreport_salereport set Igst_Percent_Sale = 5,Cgst_Percent_Sale = 0,Sgst_Percent_Sale = 0,Igst_Tot_Sale = 20.48,Cgst_Tot_Sale = 0,Sgst_Tot_Sale = 0, place_of_supply = 'Jharkhand(20)' where id = 2809;
+update bill.adminreport_salereport set Igst_Percent_Sale = 5,Cgst_Percent_Sale = 0,Sgst_Percent_Sale = 0,Igst_Tot_Sale = 139.20,Cgst_Tot_Sale = 0,Sgst_Tot_Sale = 0, place_of_supply = 'Jharkhand(20)' where id = 2810;
+
+completed on 16/5/21
+update bill.adminreport_salereport set Hsn_Code =6302 where Hsn_Code = 63;
+update bill.adminreport_salereport set Hsn_Code =5208 where Hsn_Code = 520831;
+update bill.adminreport_salereport set Hsn_Code =5407 where Hsn_Code = 540710;
+update bill.adminreport_salereport set Hsn_Code =5210 where Hsn_Code = 521021;
+update bill.adminreport_salereport set Hsn_Code =5407 where Hsn_Code = 5403;
+update bill.adminreport_salereport set Hsn_Code =5201 where Hsn_Code = 5200;
+update bill.adminreport_salereport set Hsn_Code =5211 where Hsn_Code = 5215;
+update bill.bill_billsaleentry set Hsn_Code =5407 where Hsn_Code = 5403;
+update bill.bill_billsaleentry set Hsn_Code =5201 where Hsn_Code = 5200;
+update bill.bill_billsaleentry set Hsn_Code =5211 where Hsn_Code = 5215;
+
+
+
+
+
+completed on 9/5/21
+update bill.adminreport_cust_payment_record set  Comment= "Duplicate entry ignore this", is_last=false where id =5 ;
+update bill.adminreport_cust_payment_record set  Comment= "Duplicate entry ignore this", is_last=false where id =4 ;
+
+
+
+IN-20	Duplicate 19
+IN-22	Duplicate 23
+IN-24	Duplicate 25
+IN-30	Duplicate 32
+IN-31	Bill missing
+IN-122	Duplicate 123
+IN-153	Duplicate 154
+	
+IN-209	Duplicate 211 extra item added
+IN-210	Bill missing
+
+
+SELECT * FROM bill.bill_billsaleentry where (IGST_Percent+CGST_Percent+SGST_Percent)<>5;
+SELECT * FROM bill.bill_billsaleentry where length(HSN_Code)<>4;
+
+
+
+SELECT * FROM bill.bill_billsaleentry where Unit <>'MTR' and Unit <>'PCS' and Unit <>'DOZ' and Unit<>'CHK' and Unit<>'JODA'; (ITEM_code =205)

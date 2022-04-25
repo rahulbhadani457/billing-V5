@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>EST-{{ InvNumber }}</title>
+        <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'bill/css/bootstrap.min.css' %}">
+  <script src={% static 'bill/js/bootstrap.min.js' %}></script>
+
+  </script>
+   <script>
+     function printpage() {
+        //Get the print button and put it into a variable
+        var printButton = document.getElementById("printpagebutton");
+        //Set the print button visibility to 'hidden' 
+        printButton.style.visibility = 'hidden';
+        //Print the page content
+        window.print()
+        printButton.style.visibility = 'visible';
+    }
+    </script>
+  <style>
+table tr.page-break{
+  page-break-after:always
+} 
+
+
+.table td, .table th, .table thead ,.table tbody {
+    border: none;
+}
+.table td, .table th{
+padding: 5px;
+}
+
+table.table.table-condensed {
+    border: 0px solid black;
+}
+
+
+.line-center{
+    margin:0;padding:0 10px;
+    background:#fff;
+    display:inline-block;
+}
+h2{
+    
+    text-align:center;
+    position:relative;
+    z-index:2;
+    
+}
+h2:after{
+    content:"";
+    position:absolute;
+    top:50%;
+    left:0;
+    right:0;
+    border-top:solid 2px red;
+    z-index:-1;
+}
+td{
+
+  font-size:10px;
+
+}
+td:first-line{
+  font-size:18px;
+
+}
+
+  </style>
+</head>
+<body>
+<div class="container">
+<div class="table-responsive-border" >          
+<br>
+<br>
+  <h2><span  class="line-center">Estimate Bill</span></h2>
+
+  <div class="table-responsive-border" >          
+  <table class="table table-condensed" >
+    {% for obj in CustDetails %}
+      <tr>
+        <th>Customer Details</th>
+        <th>Estimate Details</th>
+        
+        
+      </tr>
+    <tr>
+        <td>Customer Name: <b>{{obj.Customer_Name}}</b></td>
+        <td>Estimate Date: <b>{{inv_date}}</b></td>
+        
+        
+      </tr>
+      <tr>
+      
+        <td>Address: {{obj.Address}}</td>
+        <td>Estimate No:<b>EST-{{ InvNumber }}</b></td>
+        
+      </tr>
+      
+{% endfor %}
+  </table>
+<hr  color="red">
+<div class="table-responsive-border" >          
+  <table class="table table-condensed" >
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Item</th>
+        <th>Qty</th>
+        <th>Unit</th>
+        <th>Rate(&#x20b9;)(Nett.)/Unit</th>
+        <th>Total(&#x20b9;)</th>
+      </tr>
+    </thead>
+    {% for obj in ItemsDetails %}
+    <tbody>
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td style="min-width: 250px;">{{obj.Item_Name }}<br>
+        <td>{{obj.Quatity_Bought_Sale }}
+		    <td>{{obj.Unit_Sale}}</td>
+        <td>{{obj.Unit_Nett_Price_Sale}}</td>
+        <td>{{obj.Total_Sale}}</td>
+        </tr>
+    </tbody>
+      </tr>
+      {% endfor %}
+
+      
+
+      
+      
+  </table>
+  </p>
+  <hr  color="red">
+
+  <div class="table-responsive-border" >          
+    <table class="table table-condensed" >
+          <td class ="text-right"><b>Total</b></td>
+          <td class ="text-right"><b>&#x20b9; {{ Total }}</b></td> 
+        </tr>
+            <tr>
+          <td class ="text-right"><b>Total in words</b></td>
+          <td class ="text-right"> <b>{{ Total_in_word }}</b></td> 
+        </tr>
+  
+    </table>
+
+  <div>
+   <font size="1">
+          <ol>
+  
+      
+      <li>All disputes subjects to Gaya Jurisdicition</li>
+      <li>E. & O.E.</li>
+    </ol> 
+    </font>
+    
+    </div>
+  
+  
+      <div></div>
+    <center>**Computer generated Estimate and requires no signature**</center>
+    </div>
+  <center>  <input id="printpagebutton" type="button" class="btn btn-success my-2 my-sm-0 button1" value="Print Bill" onclick="printpage()"/></center>
+  </body>
+  </html>

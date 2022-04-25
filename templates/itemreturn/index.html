@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block body_block %}
+<h1><center>
+Return Item</center></h1>
+
+<br>
+
+<a href="{% url 'itemreturn:CreatereturnEntry' %}"><button type="button" class="btn btn-success">Create</button></a>
+
+{% endblock %}

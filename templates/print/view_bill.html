@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_block %}
+<style>
+.open-button {
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+    width: 280px;
+  }
+</style>
+  <script>
+    $( function() {
+      var availableTags = [
+        
+      ];
+      $( "#q_auto" ).autocomplete({
+        source: "{% url 'print:autocomplete'%}"
+      });
+    } );
+    </script>
+<h1>Item Added Summary</h1><br>
+<center>
+<form form ="myform" class="form-inline my-2 my-lg-0" action="/print/quick_print_Form/" method="get" onsubmit="myButton.disabled = true; return true;">
+      <input class="form-control mr-sm-2 w-50" type="text" placeholder="ItemCode/Item name" required name="q" id='q_auto'>
+      <input class="form-control mr-sm-2" type="text" placeholder="Quatity"  required name="Quat">
+      <input class="form-control mr-sm-2" type="text" placeholder="Sell Price"  name="sellPrice">
+      <button name = "myButton" class="btn btn-secondary my-2 my-sm-0 button1" type="submit">Billing</button>
+    </form>
+</center>    <br>
+{% if errorval == 'NoVal'%}
+    No ItemCode {{Itemcode_got}} found
+
+{% endif%}
+<h5>State of Supply : {{placeOfSupply}}
+{% if bill_type == 'IN'%}
+    Bill Type = Invoice Bill
+    {% elif bill_type == 'EST'%}
+    Bill Type =  Estimation
+{% endif%}
+</h5>
+<table border="1">
+<thead>
+    <tr>
+    <th>ItemName</th>
+    <th>ItemCatogory</th>
+    <th>Quatity</th>
+    <th>Unit</th>
+    <th>RateOfSale</th>
+    <th>IGST%</th>
+    <th>IGST </th>
+    <th>CGST%</th>
+    <th>CGST</th>
+    <th>SGST%</th>
+    <th>SGST</th>
+    <th>Total No Tax</th>
+    <th>Total</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    </tr>
+</thead>
+<tbody>
+    {% for obj in viewprint %}
+        {% if obj.Item_Code in errorList %}
+            <tr bgcolor="yellow">
+        {% elif obj.Rate_Of_Purchase > obj.Rate_Of_Sale %}
+            <tr bgcolor="red">
+        {% else %}
+            <tr bgcolor="white">
+        {% endif %}
+        <td>{{ obj.Item_Name }}</td>
+        <td>{{ obj.Item_Catogory }}</td>
+        <td>{{ obj.Quatity_Sold }}</td>
+        <td>{{ obj.Unit }}</td>
+        <td>{{ obj.Rate_Of_Sale }}</td>
+        <td>{{ obj.IGST_Percent }}</td>
+        <td>{{ obj.Total_IGST }}</td>
+        <td>{{ obj.CGST_Percent }}</td>
+        <td>{{ obj.Total_CGST }}</td>
+        <td>{{ obj.SGST_Percent }}</td>
+        <td>{{ obj.Total_SGST }}</td>
+        <td>{{ obj.Gross_Total }}</td>
+        <td>{{ obj.Total }}</td>
+        <td><a href="{% url 'print:update_print_Form' obj.id %}">edit</a></td>
+        <td><a class="btn btn-danger" href="{% url 'print:delete' obj.id %}">delete</a></td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+<h3>Grand Total={{grandTotal}}
+<br>
+<br>
+<br>
+
+
+
+<center><a type="button" class="btn btn-primary active" href="{% url 'adminrep:NewCustForm'%}">Add customer Details</a></center>
+<br>
+<br>
+<br>
+<center><a type="button" class="btn btn-primary active" href="{% url 'print:testPrint'%}">Test</a></center>
+
+<button class = 'open-button' onclick="myFunction()">Add New Item</button>
+
+<script>
+function myFunction() {
+  window.open("http://127.0.0.1:8000/bill/create/", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=0,width=2000,height=1000");
+}
+</script>
+    
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block body_block %}
+
+    <a href="{% url 'adminrep:gst1Input' %}"><button type="button" class="btn btn-outline-success" class="btn btn-info" >Sales report</button></a>
+    <p></p>
+    <a href="{% url 'GST2A:gst2Input' %}"><button type="button" class="btn btn-outline-success" class="btn btn-info" >Purchase report</button></a>
+    
+    <p></p>
+    <a href="{% url 'adminrep:CustEntryView' %}"><button type="button" class="btn btn-outline-success" class="btn btn-info" >Customer</button></a>
+    
+{% endblock %}

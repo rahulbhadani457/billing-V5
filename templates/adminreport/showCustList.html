@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block body_block %}
+<h1>Bill</h1>
+
+<table border="1">
+<thead>
+    <tr>
+    <th>Cust_Id</th>
+    <th>Customer Name</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>State</th>
+    <th>GSTN of Customer</th>
+  </tr>
+        {% for obj in showCustList %}
+      <tr>
+            <td>{{ obj.Cust_Id }}</td>
+            <td>{{ obj.Customer_Name }}</td>
+            <td>{{ obj.Address }}</td>
+            <td>{{ obj.City }}</td>
+            <td>{{ obj.State }}</td>
+            <td>{{ obj.GSTN_of_Customer }}</td>
+        <td><a href="{% url 'adminrep:updateCustEntry' obj.Cust_Id %}">edit</a></td>
+        
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+{% endblock %}

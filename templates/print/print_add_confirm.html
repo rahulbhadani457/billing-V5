@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block body_block %}
+<h1>Add to print?</h1>
+<p>
+
+<h3>Do you want to Add Item of Item Code {{ ItemCode }}<p>
+Item name is {{ ItemName }}</p></h3>
+
+
+</p>
+<a class="nav-link" href="{% url 'print:post_print_Form' %}"><button class="btn btn-secondary my-2 my-sm-0" type="submit">Confirm</button></a>
+
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block body_block %}
+<p class="container">
+  <div class="jumbotron">
+    <h1><center>Detail</center></h1>
+    
+    <p><label class="control-label col-sm-2" >Supplier name</label>:<b> {{GSTR2A.Supplier_name}}</b> </p>
+    <p><label class="control-label col-sm-2" >GSTIN of Supplier</label>: {{GSTR2A.GSTIN_of_Supplier}}</p>
+    <p><label class="control-label col-sm-2" >Invoice number</label>: {{GSTR2A.Invoice_number}}</p>
+    <p><label class="control-label col-sm-2" >Invoice date</label>: {{GSTR2A.Invoice_date}}</p>
+    <p><label class="control-label col-sm-2" >Product Receive Date</label>: {{GSTR2A.Received_date}}</p>
+    <p><label class="control-label col-sm-2" >Amount Without Tax</label>: {{GSTR2A.Amount_No_Tax}}</p>
+    <p><label class="control-label col-sm-2" >SGST Amount</label>: {{GSTR2A.SGST_Tax}}</p>
+    <p><label class="control-label col-sm-2" >CGST Amount</label>: {{GSTR2A.CGST_Tax}}</p>
+    <p><label class="control-label col-sm-2" >IGST Amount</label>: {{GSTR2A.IGST_Tax}}</p>
+    <p><label class="control-label col-sm-2" >Total Amount</label>: {{GSTR2A.Total_Amount}}</p>
+    <div class="btn-group" >
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="{% url 'GST2A:CreateGST2A' %}"><button type="button" class="btn btn-warning button2">Create New</button></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="{% url 'GST2A:UpdateGSTR2A' GSTR2A.id %}"><button type="button" class="btn btn-danger button2">Update</button></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="{% url 'GST2A:GSTR2AList'%}"><button type="button" class="btn btn-success button2" >Show all details</button></a>
+    
+  </div>
+  </div>
+  
+
+        
+
+  </div>
+
+
+{% endblock %}

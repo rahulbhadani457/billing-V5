@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+<h1>Delete {{deleteGSRT2A.GSTIN_of_Supplier}} and Invoice No {{deleteGSRT2A.Invoice_number}}?</h1>
+
+<form method="post" onsubmit="myButton.disabled = true; return true;">
+  {% csrf_token %}
+  <input type="submit" class="btn btn-danger" value="Delete">
+  <a href="{% url 'print:viewprint' %} ">Cancel</a>
+
+
+</form>
+
+{% endblock %}

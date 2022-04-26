@@ -62,7 +62,7 @@ def autocomplete_Supplier(request):
     model = GSRT2A
     q= request.GET.get('term')
     print(q)
-    qs =model.objects.filter(Q(Supplier_name__istartswith = q)|Q(GSTIN_of_Supplier__istartswith = q))
+    qs =model.objects.filter(Q(Supplier_name__icontains = q)|Q(GSTIN_of_Supplier__istartswith = q))
     item_name_lst =list()
     for item in qs.values():
         val = "GST Num:"+item['GSTIN_of_Supplier']+','+"Name:"+item['Supplier_name']
@@ -86,7 +86,7 @@ def GSTR2AFilling(request):
         qs =model.objects.filter(Q(Supplier_name__iexact=m.group(2))&Q(GSTIN_of_Supplier__istartswith = m.group(1))&Q(Invoice_date__range=(startdate, enddate)))
     else:
         qs =model.objects.filter(Q(Invoice_date__range=(startdate, enddate)))
-    print(qs)
+    #print(qs)
     return render(request, 'GSTR2A/gst2_rep.html', {'search_result': 1})
     
 

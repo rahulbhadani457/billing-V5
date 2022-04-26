@@ -29,6 +29,8 @@ class salesDb(models.Model):
     GST_Type = models.CharField(max_length=6)
     Rate_Of_Purchase = models.FloatField(null=False)
     insert_date =models.DateTimeField(auto_now=True)
+    FinalSP = models.FloatField(null=True)
+    FinalGST = models.FloatField(null=True)
 
     def __int__(self):
         return self.Total

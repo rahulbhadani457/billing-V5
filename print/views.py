@@ -163,14 +163,16 @@ def viewprint(request):
     
     #if bill_type=='IN':
 
-    viewprint = salesDb.objects.filter(session_id=request.session.session_key).order_by('-insert_date')
+    viewprint = salesDb.objects.filter(session_id=request.session.session_key).order_by('insert_date')
     session_id = request.session.session_key
     session = request.user
-    #print(session_id)
-    #print(viewprint)
     error_list = list()
     checkList = list()
+    opDict = dict()
     for itemLoop in viewprint.values():
+        opDict['Item_Name']= itemLoop['Item_Code']
+        #print(viewprint.values())
+
         if itemLoop['Item_Code'] not in checkList:
             checkList.append(itemLoop['Item_Code'])
         else:
@@ -432,12 +434,14 @@ def quick_print_Form(request):
         if sellPrice !='':
             try:
                 sellPrice = float(sellPrice)
+                
             except Exception:
                 dic = {'error':'"'+sellPrice+'" is not number Quatity should be number'}
                 return render(request,'print/error_add_billing.html',context=dic)
             sp = (sellPrice*100)/(100+CGST_Per_Val+IGST_Per_Val+SGST_Per_Val)
             ros = float("{0:.2f}".format(sp))
             data['Rate_Of_Sale']= ros
+            
         else:
             ros = printVal.Rate_Of_Sale
 
@@ -451,6 +455,9 @@ def quick_print_Form(request):
         data['Total_CGST']= total_cgst
         data['Total_IGST']= total_igst
         data['Total_SGST']= total_sgst
+        FinalSP = ros+((CGST_Per_Val+IGST_Per_Val+SGST_Per_Val)*ros)/100
+        data['FinalSP']= float("{0:.2f}".format(FinalSP))
+        data['FinalGST']= float("{0:.2f}".format(CGST_Per_Val+IGST_Per_Val+SGST_Per_Val))
         
         salesDb(**data).save()
         return HttpResponseRedirect(reverse('print:viewprint'))

@@ -18,10 +18,11 @@
 
 <br/>
 <form form ="myform" class="form-inline my-2 my-lg-0" action="/print/quick_print_Form/" method="get" onsubmit="myButton.disabled = true; return true;">
-      <h6>If you want to add more item  </h6><input class="form-control mr-sm-2 w-50" type="text" placeholder="ItemCode/Item name" required name="q" id='q_auto'>
-      <input class="form-control mr-sm-2" type="text"  placeholder="Quatity"  required name="Quat">
-      <button class="btn btn-secondary my-2 my-sm-0 button1" type="submit">Billing</button>
-    </form>
+  <input class="form-control mr-sm-2 w-50" type="text" placeholder="ItemCode/Item name" required name="q" id='q_auto'>
+  <input class="form-control mr-sm-2" type="text" placeholder="Quatity"  required name="Quat">
+  <input class="form-control mr-sm-2" type="text" placeholder="Sell Price"  name="sellPrice">
+  <button name = "myButton" class="btn btn-secondary my-2 my-sm-0 button1" type="submit">Billing</button>
+</form>
 
 <br>
   To see data already added<a class="btn btn-success" href="{% url 'print:viewprint' %} ">View</a>

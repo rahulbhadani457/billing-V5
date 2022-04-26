@@ -149,7 +149,7 @@ def search(request):
 def autocomplete(request):
     model = models.billSaleEntry
     q= request.GET.get('term')
-    qs =model.objects.filter(Q(Item_Code__iexact=q)|Q(Item_Name__istartswith = q)|Q(Item_Catogory__icontains=q)).values('Item_Name')
+    qs =model.objects.filter(Q(Item_Code__iexact=q)|Q(Item_Name__icontains = q)|Q(Item_Catogory__icontains=q)).values('Item_Name')
     item_name_lst =list()
     for item in qs.values():
         sp = item['Rate_Of_Sale']

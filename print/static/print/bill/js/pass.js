@@ -7,5 +7,5 @@ if (password===pass1)
   alert('Password Correct! Click OK to enter!');
 else
    {
-    window.location="http://maabhagwatihandloom.com/";
+    window.location="{% url 'bill:index'%}";
     }

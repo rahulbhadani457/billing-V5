@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block body_block %}
 <a href="{% url 'bill:Estimate'%}"><button type="button" class="btn btn-success btn-lg btn-block">Estimate Bill</button></a>
 <br>
@@ -6,4 +7,22 @@
 <br>
 <br>
 <a href="{% url 'bill:Invoice'%}"><button type="button" class="btn btn-success btn-lg btn-block">Invoice Bill</button></a>
+
+<br>
+<br>
+<br>
+<script>
+    $( function() {
+      var availableTags = [
+        
+      ];
+      $( "#q2" ).autocomplete({
+        minLength: 1,
+        source: "{% url 'bill:autocomplete'%}"
+      });
+    } );
+    </script>
+<div class="input-group">
+    <input class="form-control border rounded-pill" type="search" placeholder="search item here" id="q2">
+</div>
 {% endblock %}

@@ -7,6 +7,12 @@
 
 {% include 'form_template.html' %}
 <div class="col-sm-offset-2 col-sm-10">
-    <input type="submit" name = "myButton" class='btn btn-success' value="Submit" onclick="window.open('http://maabhagwatihandloom.com/')"/>
+    <input type="submit" name = "myButton" class='btn btn-success' value="Submit" onclick=onclick="myFunction()"/>
 
+
+    <script>
+        function myFunction() {
+          window.open("{% url 'bill:index'%}");
+        }
+        </script>
 {% endblock %}

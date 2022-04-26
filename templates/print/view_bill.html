@@ -45,20 +45,14 @@
     Bill Type =  Estimation
 {% endif%}
 </h5>
-<table border="1">
+<table class="table table-bordered table-condensed">
 <thead>
     <tr>
     <th>ItemName</th>
     <th>ItemCatogory</th>
     <th>Quatity</th>
-    <th>Unit</th>
-    <th>RateOfSale</th>
-    <th>IGST%</th>
-    <th>IGST </th>
-    <th>CGST%</th>
-    <th>CGST</th>
-    <th>SGST%</th>
-    <th>SGST</th>
+    <th>Final Price</th>
+    <th>Tax%</th>
     <th>Total No Tax</th>
     <th>Total</th>
     <th>Edit</th>
@@ -76,15 +70,9 @@
         {% endif %}
         <td>{{ obj.Item_Name }}</td>
         <td>{{ obj.Item_Catogory }}</td>
-        <td>{{ obj.Quatity_Sold }}</td>
-        <td>{{ obj.Unit }}</td>
-        <td>{{ obj.Rate_Of_Sale }}</td>
-        <td>{{ obj.IGST_Percent }}</td>
-        <td>{{ obj.Total_IGST }}</td>
-        <td>{{ obj.CGST_Percent }}</td>
-        <td>{{ obj.Total_CGST }}</td>
-        <td>{{ obj.SGST_Percent }}</td>
-        <td>{{ obj.Total_SGST }}</td>
+        <td>{{ obj.Quatity_Sold }} {{ obj.Unit }}</td>
+        <td>{{ obj.FinalSP }}</td>
+        <td>{{ obj.FinalGST }}</td>
         <td>{{ obj.Gross_Total }}</td>
         <td>{{ obj.Total }}</td>
         <td><a href="{% url 'print:update_print_Form' obj.id %}">edit</a></td>
@@ -110,7 +98,7 @@
 
 <script>
 function myFunction() {
-  window.open("http://127.0.0.1:8000/bill/create/", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=0,width=2000,height=1000");
+  window.open("{% url 'bill:create'%}", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=0,width=2000,height=1000");
 }
 </script>
     

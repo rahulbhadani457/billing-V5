@@ -13,7 +13,7 @@
    <script>
      function printpage() {
         //Get the print button and put it into a variable
-        window.open('http://maabhagwatihandloom.com/')
+        window.open("{% url 'bill:index'%}")
         var printButton = document.getElementById("printpagebutton");
         //Set the print button visibility to 'hidden' 
         printButton.style.visibility = 'hidden';

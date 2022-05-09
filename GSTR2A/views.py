@@ -7,7 +7,7 @@ from django.urls import reverse_lazy,reverse
 import os,csv
 from django.db.models import Q
 from django.db import connection
-import re
+import re,datetime
 
 
 #  bill index page
@@ -38,7 +38,7 @@ class GSTR2ADeleteView(DeleteView):
     template_name = 'GSTR2A/GSRT2A_confirm_delete.html'
     model = GSRT2A
     context_object_name = 'deleteGSRT2A'
-    success_url = reverse_lazy("GST2A:GSTR2AList")
+    success_url = reverse_lazy("GST2A:gst2Input")
 
 class GSTR2AList(ListView):
 
@@ -81,13 +81,17 @@ def GSTR2AFilling(request):
     Supplier = request.GET.get('id_Supplier')
     due_or_all = request.GET.get('id_due_or_all')
     #print(Supplier)
+    if startdate == "":
+        startdate = datetime.datetime(2018, 1, 1)
+    if enddate =="":
+        enddate = datetime.datetime.now()
     if re.search('GST\sNum\:.+,Name\:.+$',Supplier):
         m = re.search('GST\sNum\:(.+),Name\:(.+)$',Supplier)
-        qs =model.objects.filter(Q(Supplier_name__iexact=m.group(2))&Q(GSTIN_of_Supplier__istartswith = m.group(1))&Q(Invoice_date__range=(startdate, enddate)))
+        qs =model.objects.filter(Q(Supplier_name__iexact=m.group(2))&Q(GSTIN_of_Supplier__istartswith = m.group(1))&Q(Invoice_date__range=(startdate, enddate))).order_by('Invoice_date')
     else:
-        qs =model.objects.filter(Q(Invoice_date__range=(startdate, enddate)))
+        qs =model.objects.filter(Q(Invoice_date__range=(startdate, enddate))).order_by('Invoice_date')
     #print(qs)
-    return render(request, 'GSTR2A/gst2_rep.html', {'search_result': 1})
+    return render(request, 'GSTR2A/gst2_rep.html', {'search_result': qs})
     
 
 def gst2Input(request):

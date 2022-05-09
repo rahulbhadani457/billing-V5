@@ -5,21 +5,21 @@
 <br>
 <div>
 {% if search_result %}
-    <table border="1">
+    <table border="1" id = 'myTable'>
         <thead>
             <tr>
-    <th>ItemCode</th>
-    <th>ItemName</th>
-    <th>Item_Catogory</th>
-    <th>HSNCode</th>
-    <th>Quatity Left In Stock</th>
-    <th>Unit</th>
+    <th onclick="sortTable1(0)">ItemCode</th>
+    <th onclick="sortTable(1)">ItemName</th>
+    <th onclick="sortTable(2)">Item_Catogory</th>
+    <th onclick="sortTable1(3)">HSNCode</th>
+    <th onclick="sortTable1(4)">Quatity Left In Stock</th>
+    <th onclick="sortTable(5)">Unit</th>
     
-    <th>Rate_Of_Sale</th>
-    <th>IGST%</th>
-    <th>CGST%</th>
-    <th>SGST%</th>
-    <th>GST_Type</th>
+    <th onclick="sortTable1(6)">Rate_Of_Sale</th>
+    <th onclick="sortTable1(7)">IGST%</th>
+    <th onclick="sortTable1(8)">CGST%</th>
+    <th onclick="sortTable1(9)">SGST%</th>
+    <th onclick="sortTable(10)">GST_Type</th>
     </tr>
         </thead>
         <tbody>

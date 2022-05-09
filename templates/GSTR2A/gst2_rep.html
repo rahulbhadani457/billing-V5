@@ -1,11 +1,38 @@
 {% extends "base.html" %}
 {% block body_block %}
-<center><h1>purchase report</h1></center>
+<center><h1>Purchase report</h1></center>
 
-
-
-
-
-
+<table class="table table-bordered table-condensed">
+    <thead>
+        <tr>
+        <th>Supplier_name</th>
+        <th>GSTIN_of_Supplier</th>
+        <th>Invoice_number</th>
+        <th>Invoice_date</th>
+        <th>Amount_No_Tax</th>
+        <th>SGST_Tax</th>
+        <th>CGST_Tax</th>
+        <th>IGST_Tax</th>
+        <th>Total</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for obj in search_result %}
+            
+            <td>{{ obj.Supplier_name }}</td>
+            <td>{{ obj.GSTIN_of_Supplier }}</td>
+            <td>{{ obj.Invoice_number}}</td>
+            <td>{{ obj.Invoice_date }}</td>
+            <td>{{ obj.Amount_No_Tax }}</td>
+            <td>{{ obj.SGST_Tax }}</td>
+            <td>{{ obj.CGST_Tax }}</td>
+            <td>{{ obj.IGST_Tax }}</td>
+            <td>{{ obj.Total_Amount }}</td>
+            <td><a href="{% url 'GST2A:UpdateGSTR2A' obj.id %}">edit</a></td>
+            <td><a class="btn btn-danger" href="{% url 'GST2A:GSTR2ADeleteView' obj.id %}">delete</a></td>
+        </tr>
+{% endfor %}
 
 {% endblock %}
